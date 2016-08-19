@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/18/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/19/2016
  */
 
 namespace HolidayWatchdogAPILib\Controllers;
@@ -209,67 +209,6 @@ class AccommodationController extends BaseController {
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapArray($response->body, array(), new Models\Accommodation());
-    }
-        
-    /**
-     * @todo Add general description for this endpoint
-     * @param  string     $lat        Required parameter: Example: 
-     * @param  string     $lon        Required parameter: Example: 
-     * @param  double     $radius     Optional parameter: Example: 
-     * @return mixed response from the API call
-     * @throws APIException Thrown if API call fails
-     */
-    public function getNearestAccommodationsByLatLon (
-                $lat,
-                $lon,
-                $radius = NULL) 
-    {
-        //the base uri for api requests
-        $_queryBuilder = Configuration::$BASEURI;
-        
-        //prepare query string for API call
-        $_queryBuilder = $_queryBuilder.'/accommodations/nearest-by-latlon';
-
-        //process optional query parameters
-        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
-            'lat'    => $lat,
-            'lon'    => $lon,
-            'radius' => $radius,
-            'Authorization' => Configuration::$authorization,
-        ));
-
-        //validate and preprocess url
-        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
-
-        //prepare headers
-        $_headers = array (
-            'user-agent'    => 'holidaywatchdog-api-client',
-            'Accept'        => 'application/json'
-        );
-
-        //call on-before Http callback
-        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
-        if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
-        }
-
-        //and invoke the API call request to fetch the response
-        $response = Request::get($_queryUrl, $_headers);
-
-        //call on-after Http callback
-        if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
-        }
-
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
-
-        return $response->body;
     }
         
     /**
@@ -2304,6 +2243,91 @@ class AccommodationController extends BaseController {
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapArray($response->body, array(), new Models\ExternalMapping());
+    }
+        
+    /**
+     * @todo Add general description for this endpoint
+     * @param  string      $lat               Required parameter: Example: 
+     * @param  string      $lon               Required parameter: Example: 
+     * @param  integer     $avgPriceMax       Optional parameter: Example: 
+     * @param  integer     $avgPriceMin       Optional parameter: Example: 
+     * @param  integer     $limit             Optional parameter: Number of results required
+     * @param  integer     $metaNoIndex       Optional parameter: If you want to return non indexed hotels in the results. Set to 1 for yes
+     * @param  double      $radius            Optional parameter: Example: 
+     * @param  integer     $ratingMax         Optional parameter: Example: 
+     * @param  integer     $ratingMin         Optional parameter: Example: 
+     * @param  integer     $starsMax          Optional parameter: Example: 
+     * @param  integer     $starsMin          Optional parameter: Example: 
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getNearestAccommodationsByLatLon (
+                $lat,
+                $lon,
+                $avgPriceMax = NULL,
+                $avgPriceMin = NULL,
+                $limit = NULL,
+                $metaNoIndex = NULL,
+                $radius = NULL,
+                $ratingMax = NULL,
+                $ratingMin = NULL,
+                $starsMax = NULL,
+                $starsMin = NULL) 
+    {
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/accommodations/nearest-by-latlon';
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'lat'           => $lat,
+            'lon'           => $lon,
+            'avg_price_max' => $avgPriceMax,
+            'avg_price_min' => $avgPriceMin,
+            'limit'         => $limit,
+            'meta_no_index' => $metaNoIndex,
+            'radius'        => $radius,
+            'rating_max'    => $ratingMax,
+            'rating_min'    => $ratingMin,
+            'stars_max'     => $starsMax,
+            'stars_min'     => $starsMin,
+            'Authorization' => Configuration::$authorization,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'holidaywatchdog-api-client',
+            'Accept'        => 'application/json'
+        );
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        //call on-after Http callback
+        if($this->getHttpCallBack() != null) {
+            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+        }
+
+        //Error handling using HTTP status codes
+        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
+            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
+        }
+
+        return $response->body;
     }
         
 
