@@ -2264,15 +2264,15 @@ class AccommodationController extends BaseController {
     public function getNearestAccommodationsByLatLon (
                 $lat,
                 $lon,
-                $avgPriceMax = NULL,
-                $avgPriceMin = NULL,
-                $limit = NULL,
-                $metaNoIndex = NULL,
                 $radius = NULL,
-                $ratingMax = NULL,
+                $limit = NULL,
                 $ratingMin = NULL,
+                $ratingMax = NULL,
+                $starsMin = NULL,
                 $starsMax = NULL,
-                $starsMin = NULL) 
+                $avgPriceMin = NULL,
+                $avgPriceMax = NULL,
+                $metaNoIndex = NULL) 
     {
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
