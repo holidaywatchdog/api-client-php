@@ -2,7 +2,11 @@
     "name": "holidaywatchdog/api",
     "type": "library",
     "description": "Holiday Watchdog Main API",
-    "keywords": ["holidaywatchdog-api","API","SDK"],
+    "keywords": [
+        "holidaywatchdog-api",
+        "API",
+        "SDK"
+    ],
     "homepage": "https://www.holidaywatchdog.com",
     "license": "MIT",
     "authors": [

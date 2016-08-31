@@ -1156,7 +1156,7 @@ class AccommodationController extends BaseController {
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapArray($response->body, array(), new Models\Accommodation());
+        return $mapper->mapArray($response->body, array(), new Models\AccommodationDetailedAlgolia());
     }
         
     /**
@@ -1275,7 +1275,7 @@ class AccommodationController extends BaseController {
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapArray($response->body, array(), new Models\Accommodation());
+        return $mapper->mapArray($response->body, array(), new Models\AccommodationDetailedAlgolia());
     }
         
     /**
@@ -2333,7 +2333,7 @@ class AccommodationController extends BaseController {
 
         $mapper = $this->getJsonMapper();
 
-        return $mapper->mapArray($response->body, array(), new Models\Accommodation());
+        return $mapper->mapArray($response->body, array(), new Models\AccommodationDetailedAlgolia());
     }
         
 
