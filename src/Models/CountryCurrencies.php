@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/19/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/31/2016
  */
 
 namespace HolidayWatchdogAPILib\Models;
@@ -23,17 +23,24 @@ class CountryCurrencies implements JsonSerializable {
     /**
      * @todo Write general description for this property
      * @required
-     * @maps country_name
-     * @var string $countryName public property
+     * @var string $currency public property
      */
-    public $countryName;
+    public $currency;
 
     /**
      * @todo Write general description for this property
      * @required
-     * @var string $currency public property
+     * @var double $precision public property
      */
-    public $currency;
+    public $precision;
+
+    /**
+     * @todo Write general description for this property
+     * @required
+     * @maps country_name
+     * @var string $countryName public property
+     */
+    public $countryName;
 
     /**
      * @todo Write general description for this property
@@ -44,29 +51,22 @@ class CountryCurrencies implements JsonSerializable {
     public $currencyName;
 
     /**
-     * @todo Write general description for this property
-     * @required
-     * @var double $precision public property
-     */
-    public $precision;
-
-    /**
      * Constructor to set initial or default values of member properties
      * @param   string            $country         Initialization value for the property $this->country      
-     * @param   string            $countryName     Initialization value for the property $this->countryName  
      * @param   string            $currency        Initialization value for the property $this->currency     
-     * @param   string            $currencyName    Initialization value for the property $this->currencyName 
      * @param   double            $precision       Initialization value for the property $this->precision    
+     * @param   string            $countryName     Initialization value for the property $this->countryName  
+     * @param   string            $currencyName    Initialization value for the property $this->currencyName 
      */
     public function __construct()
     {
         if(5 == func_num_args())
         {
             $this->country       = func_get_arg(0);
-            $this->countryName   = func_get_arg(1);
-            $this->currency      = func_get_arg(2);
-            $this->currencyName  = func_get_arg(3);
-            $this->precision     = func_get_arg(4);
+            $this->currency      = func_get_arg(1);
+            $this->precision     = func_get_arg(2);
+            $this->countryName   = func_get_arg(3);
+            $this->currencyName  = func_get_arg(4);
         }
     }
 
@@ -78,10 +78,10 @@ class CountryCurrencies implements JsonSerializable {
     {
         $json = array();
         $json['country']       = $this->country;
-        $json['country_name']  = $this->countryName;
         $json['currency']      = $this->currency;
-        $json['currency_name'] = $this->currencyName;
         $json['precision']     = $this->precision;
+        $json['country_name']  = $this->countryName;
+        $json['currency_name'] = $this->currencyName;
 
         return $json;
     }

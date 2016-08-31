@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/19/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/31/2016
  */
 
 namespace HolidayWatchdogAPILib\Models;
@@ -16,13 +16,6 @@ class WarehousePages implements JsonSerializable {
     /**
      * @todo Write general description for this property
      * @required
-     * @var double $accommodationId public property
-     */
-    public $accommodationId;
-
-    /**
-     * @todo Write general description for this property
-     * @required
      * @var string $id public property
      */
     public $id;
@@ -33,6 +26,13 @@ class WarehousePages implements JsonSerializable {
      * @var string $receivedAt public property
      */
     public $receivedAt;
+
+    /**
+     * @todo Write general description for this property
+     * @required
+     * @var double $accommodationId public property
+     */
+    public $accommodationId;
 
     /**
      * @todo Write general description for this property
@@ -60,15 +60,15 @@ class WarehousePages implements JsonSerializable {
 
     /**
      * @todo Write general description for this property
-     * @var string $contextIp public property
-     */
-    public $contextIp;
-
-    /**
-     * @todo Write general description for this property
      * @var string $contextPagePath public property
      */
     public $contextPagePath;
+
+    /**
+     * @todo Write general description for this property
+     * @var string $contextPageTitle public property
+     */
+    public $contextPageTitle;
 
     /**
      * @todo Write general description for this property
@@ -78,9 +78,9 @@ class WarehousePages implements JsonSerializable {
 
     /**
      * @todo Write general description for this property
-     * @var string $contextPageTitle public property
+     * @var string $contextIp public property
      */
-    public $contextPageTitle;
+    public $contextIp;
 
     /**
      * @todo Write general description for this property
@@ -96,17 +96,17 @@ class WarehousePages implements JsonSerializable {
 
     /**
      * Constructor to set initial or default values of member properties
-     * @param   double            $accommodationId       Initialization value for the property $this->accommodationId    
      * @param   string            $id                    Initialization value for the property $this->id                 
      * @param   string            $receivedAt            Initialization value for the property $this->receivedAt         
+     * @param   double            $accommodationId       Initialization value for the property $this->accommodationId    
      * @param   string            $affiliate             Initialization value for the property $this->affiliate          
      * @param   string            $anonymousId           Initialization value for the property $this->anonymousId        
      * @param   string            $city                  Initialization value for the property $this->city               
      * @param   double            $cityId                Initialization value for the property $this->cityId             
-     * @param   string            $contextIp             Initialization value for the property $this->contextIp          
      * @param   string            $contextPagePath       Initialization value for the property $this->contextPagePath    
-     * @param   string            $contextPageReferrer   Initialization value for the property $this->contextPageReferrer
      * @param   string            $contextPageTitle      Initialization value for the property $this->contextPageTitle   
+     * @param   string            $contextPageReferrer   Initialization value for the property $this->contextPageReferrer
+     * @param   string            $contextIp             Initialization value for the property $this->contextIp          
      * @param   string            $contextPageUrl        Initialization value for the property $this->contextPageUrl     
      * @param   string            $contextUserAgent      Initialization value for the property $this->contextUserAgent   
      */
@@ -114,17 +114,17 @@ class WarehousePages implements JsonSerializable {
     {
         if(13 == func_num_args())
         {
-            $this->accommodationId     = func_get_arg(0);
-            $this->id                  = func_get_arg(1);
-            $this->receivedAt          = func_get_arg(2);
+            $this->id                  = func_get_arg(0);
+            $this->receivedAt          = func_get_arg(1);
+            $this->accommodationId     = func_get_arg(2);
             $this->affiliate           = func_get_arg(3);
             $this->anonymousId         = func_get_arg(4);
             $this->city                = func_get_arg(5);
             $this->cityId              = func_get_arg(6);
-            $this->contextIp           = func_get_arg(7);
-            $this->contextPagePath     = func_get_arg(8);
+            $this->contextPagePath     = func_get_arg(7);
+            $this->contextPageTitle    = func_get_arg(8);
             $this->contextPageReferrer = func_get_arg(9);
-            $this->contextPageTitle    = func_get_arg(10);
+            $this->contextIp           = func_get_arg(10);
             $this->contextPageUrl      = func_get_arg(11);
             $this->contextUserAgent    = func_get_arg(12);
         }
@@ -137,17 +137,17 @@ class WarehousePages implements JsonSerializable {
     public function jsonSerialize()
     {
         $json = array();
-        $json['accommodationId']     = $this->accommodationId;
         $json['id']                  = $this->id;
         $json['receivedAt']          = $this->receivedAt;
+        $json['accommodationId']     = $this->accommodationId;
         $json['affiliate']           = $this->affiliate;
         $json['anonymousId']         = $this->anonymousId;
         $json['city']                = $this->city;
         $json['cityId']              = $this->cityId;
-        $json['contextIp']           = $this->contextIp;
         $json['contextPagePath']     = $this->contextPagePath;
-        $json['contextPageReferrer'] = $this->contextPageReferrer;
         $json['contextPageTitle']    = $this->contextPageTitle;
+        $json['contextPageReferrer'] = $this->contextPageReferrer;
+        $json['contextIp']           = $this->contextIp;
         $json['contextPageUrl']      = $this->contextPageUrl;
         $json['contextUserAgent']    = $this->contextUserAgent;
 

@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/19/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/31/2016
  */
 
 namespace HolidayWatchdogAPILib\Controllers;
@@ -42,14 +42,14 @@ class CruiseLineController extends BaseController {
 
     /**
      * Update instances of the model matched by where from the data source.
-     * @param  Models\CruiseLine $data      Optional parameter: An object of model property name/value pairs
      * @param  string         $where     Optional parameter: Criteria to match model instances
+     * @param  Models\CruiseLine $data      Optional parameter: An object of model property name/value pairs
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateAll (
-                $data = NULL,
-                $where = NULL) 
+                $where = NULL,
+                $data = NULL) 
     {
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
