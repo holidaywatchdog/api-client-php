@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/19/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/31/2016
  */
 
 namespace HolidayWatchdogAPILib\Controllers;
@@ -213,14 +213,14 @@ class AccommodationController extends BaseController {
         
     /**
      * Update instances of the model matched by where from the data source.
-     * @param  Models\Accommodation $data      Optional parameter: An object of model property name/value pairs
      * @param  string            $where     Optional parameter: Criteria to match model instances
+     * @param  Models\Accommodation $data      Optional parameter: An object of model property name/value pairs
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function updateAll (
-                $data = NULL,
-                $where = NULL) 
+                $where = NULL,
+                $data = NULL) 
     {
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
@@ -1035,14 +1035,14 @@ class AccommodationController extends BaseController {
         
     /**
      * @todo Add general description for this endpoint
-     * @param  double     $endId        Required parameter: Example: 
      * @param  double     $startId      Required parameter: Example: 
+     * @param  double     $endId        Required parameter: Example: 
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
     public function createBulkReindexSearch (
-                $endId,
-                $startId) 
+                $startId,
+                $endId) 
     {
         //the base uri for api requests
         $_queryBuilder = Configuration::$BASEURI;
@@ -1066,8 +1066,8 @@ class AccommodationController extends BaseController {
 
         //prepare parameters
         $_parameters = array (
-            'end_id'   => $endId,
-            'start_id' => $startId
+            'start_id' => $startId,
+            'end_id'   => $endId
         );
 
         //call on-before Http callback
@@ -1154,7 +1154,9 @@ class AccommodationController extends BaseController {
             throw new APIException("HTTP Response Not OK", $response->code, $response->body);
         }
 
-        return $response->body;
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapArray($response->body, array(), new Models\Accommodation());
     }
         
     /**
@@ -1271,7 +1273,9 @@ class AccommodationController extends BaseController {
             throw new APIException("HTTP Response Not OK", $response->code, $response->body);
         }
 
-        return $response->body;
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapArray($response->body, array(), new Models\Accommodation());
     }
         
     /**
@@ -2249,15 +2253,15 @@ class AccommodationController extends BaseController {
      * @todo Add general description for this endpoint
      * @param  string      $lat               Required parameter: Example: 
      * @param  string      $lon               Required parameter: Example: 
-     * @param  integer     $avgPriceMax       Optional parameter: Example: 
-     * @param  integer     $avgPriceMin       Optional parameter: Example: 
-     * @param  integer     $limit             Optional parameter: Number of results required
-     * @param  integer     $metaNoIndex       Optional parameter: If you want to return non indexed hotels in the results. Set to 1 for yes
      * @param  double      $radius            Optional parameter: Example: 
-     * @param  integer     $ratingMax         Optional parameter: Example: 
+     * @param  integer     $limit             Optional parameter: Number of results required
      * @param  integer     $ratingMin         Optional parameter: Example: 
-     * @param  integer     $starsMax          Optional parameter: Example: 
+     * @param  integer     $ratingMax         Optional parameter: Example: 
      * @param  integer     $starsMin          Optional parameter: Example: 
+     * @param  integer     $starsMax          Optional parameter: Example: 
+     * @param  integer     $avgPriceMin       Optional parameter: Example: 
+     * @param  integer     $avgPriceMax       Optional parameter: Example: 
+     * @param  integer     $metaNoIndex       Optional parameter: If you want to return non indexed hotels in the results. Set to 1 for yes
      * @return mixed response from the API call
      * @throws APIException Thrown if API call fails
      */
@@ -2284,15 +2288,15 @@ class AccommodationController extends BaseController {
         APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
             'lat'           => $lat,
             'lon'           => $lon,
-            'avg_price_max' => $avgPriceMax,
-            'avg_price_min' => $avgPriceMin,
-            'limit'         => $limit,
-            'meta_no_index' => $metaNoIndex,
             'radius'        => $radius,
-            'rating_max'    => $ratingMax,
+            'limit'         => $limit,
             'rating_min'    => $ratingMin,
-            'stars_max'     => $starsMax,
+            'rating_max'    => $ratingMax,
             'stars_min'     => $starsMin,
+            'stars_max'     => $starsMax,
+            'avg_price_min' => $avgPriceMin,
+            'avg_price_max' => $avgPriceMax,
+            'meta_no_index' => $metaNoIndex,
             'Authorization' => Configuration::$authorization,
         ));
 
@@ -2327,7 +2331,9 @@ class AccommodationController extends BaseController {
             throw new APIException("HTTP Response Not OK", $response->code, $response->body);
         }
 
-        return $response->body;
+        $mapper = $this->getJsonMapper();
+
+        return $mapper->mapArray($response->body, array(), new Models\Accommodation());
     }
         
 

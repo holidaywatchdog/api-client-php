@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/19/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/31/2016
  */
 
 namespace HolidayWatchdogAPILib;
