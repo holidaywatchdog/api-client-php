@@ -1,16 +1,16 @@
 {
-    "name": "holidaywatchdog/api",
+    "name": "apimatic/holidaywatchdogapi",
     "type": "library",
     "description": "Holiday Watchdog Main API",
     "keywords": ["holidaywatchdog-api","API","SDK"],
-    "homepage": "https://www.holidaywatchdog.com",
+    "homepage": "https://apimatic.io",
     "license": "MIT",
     "authors": [
         {
-            "name": "Robert Norman",
-            "email": "rnorman@tripadvisor.com",
-            "homepage": "https://www.holidaywatchdog.com",
-            "role": "Tech Lead"
+            "name": "Zeeshan @ APIMATIC",
+            "email": "zeeshan@apimatic.io",
+            "homepage": "https://github.com/apimatic",
+            "role": "Developer"
         }
     ],
     "require": {
