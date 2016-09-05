@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 08/31/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 09/05/2016
  */
 
 namespace HolidayWatchdogAPILib\Models;
@@ -267,7 +267,7 @@ class AccommodationDetailedAlgolia implements JsonSerializable {
     /**
      * An array of information from Tripadvisor
      * @required
-     * @var object $tripadvisor public property
+     * @var TripadvisorDetailedResponse $tripadvisor public property
      */
     public $tripadvisor;
 
@@ -344,7 +344,7 @@ class AccommodationDetailedAlgolia implements JsonSerializable {
      * @param   string            $dateRemoved                 Initialization value for the property $this->dateRemoved              
      * @param   array             $locationPath                Initialization value for the property $this->locationPath             
      * @param   array             $photos                      Initialization value for the property $this->photos                   
-     * @param   object            $tripadvisor                 Initialization value for the property $this->tripadvisor              
+     * @param   TripadvisorDetailedResponse   $tripadvisor                 Initialization value for the property $this->tripadvisor              
      * @param   array             $commerceMappings            Initialization value for the property $this->commerceMappings         
      * @param   string            $objectID                    Initialization value for the property $this->objectID                 
      * @param   HighlightResult   $highlightResult             Initialization value for the property $this->highlightResult          
