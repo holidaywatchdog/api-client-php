@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 09/05/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ).
  */
 
 namespace HolidayWatchdogAPILib;
@@ -15,18 +15,18 @@ use InvalidArgumentException;
 class APIHelper {
     /**
     * Replaces template parameters in the given url
-    * @param    string  $queryBuilder    The query string builder to replace the template parameters
-    * @param    array   $parameters      The parameters to replace in the url
-    * @return   void 
+    * @param    string  $url         The query string builder to replace the template parameters
+    * @param    array   $parameters  The parameters to replace in the url
+    * @return   string  The processed url
     */
-    public static function appendUrlWithTemplateParameters(&$queryBuilder, $parameters)
+    public static function appendUrlWithTemplateParameters($url, $parameters)
     {
         //perform parameter validation
-        if (is_null($queryBuilder) || !is_string($queryBuilder)) {
+        if (is_null($url) || !is_string($url)) {
             throw new InvalidArgumentException('Given value for parameter "queryBuilder" is invalid.');
         }
         if (is_null($parameters)) {
-            return;
+            return $url;
         }
         //iterate and append parameters
         foreach ($parameters as $key => $value) {
@@ -42,8 +42,10 @@ class APIHelper {
             }
 
             //find the template parameter and replace it with its value
-            $queryBuilder = str_replace('{' . strval($key) . '}', $replaceValue, $queryBuilder);
+            $url = str_replace('{' . strval($key) . '}', $replaceValue, $url);
         }
+
+        return $url;
     }
 
     /**
@@ -143,7 +145,7 @@ class APIHelper {
     {
         if($instance == null) {
             return json_decode($json, true);
-        } else{
+        } else {
             $mapper = new \apimatic\jsonmapper\JsonMapper();
             if($isArray) {
                 return $mapper->mapArray(json_decode($json), array(), $instance);

@@ -2,13 +2,18 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 09/05/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ).
  */
 
 namespace HolidayWatchdogAPILib\Controllers;
 
 use HolidayWatchdogAPILib\Http\HttpCallBack;
+use HolidayWatchdogAPILib\Http\HttpContext;
+use HolidayWatchdogAPILib\Http\HttpResponse;
+use HolidayWatchdogAPILib\APIException;
+use HolidayWatchdogAPILib\Exceptions;
 use \apimatic\jsonmapper\JsonMapper;
+use Unirest\Request;
 
 /**
 * Base controller
@@ -20,6 +25,10 @@ class BaseController
      * @var HttpCallBack
      */
     private $httpCallBack = null;
+
+     /**
+     * Constructor that sets the timeout of requests
+     */
 
     /**
      * Set HttpCallBack for this controller
@@ -47,5 +56,13 @@ class BaseController
     {
         $mapper = new JsonMapper();
         return $mapper;
+    }
+
+    protected function validateResponse(HttpResponse $response, HttpContext $_httpContext)
+    {
+        if (($response->getStatusCode() < 200) || ($response->getStatusCode() > 208)) { //[200,208] = HTTP OK
+            throw new APIException('HTTP Response Not OK', $_httpContext);
+        }
+
     }
 }
