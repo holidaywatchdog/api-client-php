@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 09/05/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ).
  */
 
 namespace HolidayWatchdogAPILib\Controllers;
@@ -11,6 +11,7 @@ use HolidayWatchdogAPILib\APIException;
 use HolidayWatchdogAPILib\APIHelper;
 use HolidayWatchdogAPILib\Configuration;
 use HolidayWatchdogAPILib\Models;
+use HolidayWatchdogAPILib\Exceptions;
 use HolidayWatchdogAPILib\Http\HttpRequest;
 use HolidayWatchdogAPILib\Http\HttpResponse;
 use HolidayWatchdogAPILib\Http\HttpMethod;
@@ -73,24 +74,22 @@ class WarehousePagesController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -130,24 +129,22 @@ class WarehousePagesController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -187,24 +184,22 @@ class WarehousePagesController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -229,7 +224,7 @@ class WarehousePagesController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/warehouse-pages/{id}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'     => $id,
             ));
 
@@ -251,24 +246,22 @@ class WarehousePagesController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -291,7 +284,7 @@ class WarehousePagesController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/warehouse-pages/{id}/exists';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -312,24 +305,22 @@ class WarehousePagesController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 

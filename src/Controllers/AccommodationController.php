@@ -2,7 +2,7 @@
 /*
  * HolidayWatchdogAPI
  *
- * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ) on 09/05/2016
+ * This file was automatically generated for Holiday Watchdog by APIMATIC v2.0 ( https://apimatic.io ).
  */
 
 namespace HolidayWatchdogAPILib\Controllers;
@@ -11,6 +11,7 @@ use HolidayWatchdogAPILib\APIException;
 use HolidayWatchdogAPILib\APIHelper;
 use HolidayWatchdogAPILib\Configuration;
 use HolidayWatchdogAPILib\Models;
+use HolidayWatchdogAPILib\Exceptions;
 use HolidayWatchdogAPILib\Http\HttpRequest;
 use HolidayWatchdogAPILib\Http\HttpResponse;
 use HolidayWatchdogAPILib\Http\HttpMethod;
@@ -73,24 +74,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -130,24 +129,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::put($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -187,24 +184,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -247,24 +242,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         return $response->body;
     }
@@ -287,7 +280,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'   => $id,
             ));
 
@@ -309,24 +302,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::put($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -351,7 +342,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews/count';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'    => $id,
             ));
 
@@ -373,24 +364,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -415,7 +404,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums/count';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'    => $id,
             ));
 
@@ -437,24 +426,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -479,7 +466,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'   => $id,
             ));
 
@@ -501,24 +488,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -543,7 +528,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings/count';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'    => $id,
             ));
 
@@ -565,24 +550,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -607,7 +590,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'   => $id,
             ));
 
@@ -629,24 +612,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -671,7 +652,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk' => $fk,
             'id' => $id,
             ));
@@ -692,24 +673,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
     }
         
     /**
@@ -732,7 +711,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk'   => $fk,
             'id'   => $id,
             ));
@@ -755,24 +734,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::put($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -797,7 +774,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk' => $fk,
             'id' => $id,
             ));
@@ -819,24 +796,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -861,7 +836,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk' => $fk,
             'id' => $id,
             ));
@@ -882,24 +857,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
     }
         
     /**
@@ -922,7 +895,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk'   => $fk,
             'id'   => $id,
             ));
@@ -945,24 +918,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::put($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -987,7 +958,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk' => $fk,
             'id' => $id,
             ));
@@ -1009,24 +980,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1073,24 +1042,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl, $_parameters);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Form($_parameters));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         return $response->body;
     }
@@ -1113,7 +1080,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/nearby-accommodations';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'     => $id,
             ));
 
@@ -1135,24 +1102,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1175,7 +1140,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/photos';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -1196,24 +1161,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         return $response->body;
     }
@@ -1254,24 +1217,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1296,7 +1257,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk' => $fk,
             'id' => $id,
             ));
@@ -1317,24 +1278,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
     }
         
     /**
@@ -1353,7 +1312,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/detailed';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -1374,24 +1333,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         return $response->body;
     }
@@ -1429,24 +1386,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1486,24 +1441,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1526,7 +1479,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -1547,24 +1500,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         return $response->body;
     }
@@ -1587,7 +1538,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'     => $id,
             ));
 
@@ -1609,24 +1560,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1653,7 +1602,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk'   => $fk,
             'id'   => $id,
             ));
@@ -1676,24 +1625,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::PUT, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::put($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1716,7 +1663,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/exists';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -1737,24 +1684,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1777,7 +1722,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -1797,24 +1742,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
     }
         
     /**
@@ -1835,7 +1778,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings/{fk}';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'fk' => $fk,
             'id' => $id,
             ));
@@ -1857,24 +1800,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1899,7 +1840,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'   => $id,
             ));
 
@@ -1921,24 +1862,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::POST, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::post($_queryUrl, $_headers, Request\Body::Json($data));
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -1963,7 +1902,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-reviews';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'     => $id,
             ));
 
@@ -1985,24 +1924,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -2025,7 +1962,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -2045,24 +1982,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
     }
         
     /**
@@ -2083,7 +2018,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/user-photo-albums';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'     => $id,
             ));
 
@@ -2105,24 +2040,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
@@ -2145,7 +2078,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id' => $id,
             ));
 
@@ -2165,24 +2098,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::DELETE, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::delete($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
     }
         
     /**
@@ -2203,7 +2134,7 @@ class AccommodationController extends BaseController {
         $_queryBuilder = $_queryBuilder.'/accommodations/{id}/commerce-mappings';
 
         //process optional query parameters
-        APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
             'id'     => $id,
             ));
 
@@ -2225,28 +2156,83 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
         return $mapper->mapArray($response->body, array(), new Models\ExternalMapping());
+    }
+        
+    /**
+     * Convert TA ID to HWD id
+     * @param  double     $id     Required parameter: TA id to convert to HWD id
+     * @return mixed response from the API call
+     * @throws APIException Thrown if API call fails
+     */
+    public function getAccIdByTAId (
+                $id) 
+    {
+        //the base uri for api requests
+        $_queryBuilder = Configuration::$BASEURI;
+        
+        //prepare query string for API call
+        $_queryBuilder = $_queryBuilder.'/accommodations/ta-mapping/{id}';
+
+        //process optional query parameters
+        $_queryBuilder = APIHelper::appendUrlWithTemplateParameters($_queryBuilder, array (
+            'id' => $id,
+            ));
+
+        //process optional query parameters
+        APIHelper::appendUrlWithQueryParameters($_queryBuilder, array (
+            'Authorization' => Configuration::$authorization,
+        ));
+
+        //validate and preprocess url
+        $_queryUrl = APIHelper::cleanUrl($_queryBuilder);
+
+        //prepare headers
+        $_headers = array (
+            'user-agent'    => 'holidaywatchdog-api-client',
+            'Accept'        => 'application/json'
+        );
+
+        //call on-before Http callback
+        $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
+        if($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
+        }
+
+        //and invoke the API call request to fetch the response
+        $response = Request::get($_queryUrl, $_headers);
+
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
+        //call on-after Http callback
+        if($this->getHttpCallBack() != null) {
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
+        }
+
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
+
+        return $response->body;
     }
         
     /**
@@ -2312,24 +2298,22 @@ class AccommodationController extends BaseController {
         //call on-before Http callback
         $_httpRequest = new HttpRequest(HttpMethod::GET, $_headers, $_queryUrl);
         if($this->getHttpCallBack() != null) {
-            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);            
+            $this->getHttpCallBack()->callOnBeforeRequest($_httpRequest);
         }
 
         //and invoke the API call request to fetch the response
         $response = Request::get($_queryUrl, $_headers);
 
+        $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
+        $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
+
         //call on-after Http callback
         if($this->getHttpCallBack() != null) {
-            $_httpResponse = new HttpResponse($response->code, $response->headers, $response->raw_body);
-            $_httpContext = new HttpContext($_httpRequest, $_httpResponse);
-            
-            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);            
+            $this->getHttpCallBack()->callOnAfterRequest($_httpContext);
         }
 
-        //Error handling using HTTP status codes
-        if (($response->code < 200) || ($response->code > 206)) { //[200,206] = HTTP OK
-            throw new APIException("HTTP Response Not OK", $response->code, $response->body);
-        }
+        //handle errors defined at the API level
+        $this->validateResponse($_httpResponse,$_httpContext);
 
         $mapper = $this->getJsonMapper();
 
